@@ -26,15 +26,17 @@ function setDimensions(cards, size){
 
 createCards(INITIAL_SIZE);
 
-function checkHoverEvent() {
+function onHoverEvent() {
     const cards = document.querySelectorAll('.card');
     cards.forEach((card) => {
         card.addEventListener('mouseover', () => {
-            card.style.backgroundColor = getRandomColor();
+            if (!card.style.backgroundColor) card.style.backgroundColor = getRandomColor();
+            if (!card.style.opacity) card.style.opacity = 0.1;
+            else card.style.opacity = Number(card.style.opacity) + 0.1;
         });
     });
 }
-checkHoverEvent();
+onHoverEvent();
 
 const newGridBtn = document.querySelector('#newGridBtn');
 newGridBtn.addEventListener('click', () => {
@@ -46,7 +48,7 @@ newGridBtn.addEventListener('click', () => {
     removeChildren(container);
 
     createCards(newBoardSize);
-    checkHoverEvent();
+    onHoverEvent();
 });
 
 function removeChildren(parent) {
