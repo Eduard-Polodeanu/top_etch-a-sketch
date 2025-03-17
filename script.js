@@ -30,7 +30,7 @@ function checkHoverEvent() {
     const cards = document.querySelectorAll('.card');
     cards.forEach((card) => {
         card.addEventListener('mouseover', () => {
-            card.style.backgroundColor = "black";
+            card.style.backgroundColor = getRandomColor();
         });
     });
 }
@@ -65,4 +65,13 @@ function checkPromptText() {
         return 100;
     }
     else return value;
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
